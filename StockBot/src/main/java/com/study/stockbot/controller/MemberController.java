@@ -2,13 +2,17 @@ package com.study.stockbot.controller;
 
 import com.study.stockbot.entity.MemberEntity;
 import com.study.stockbot.repo.MemberRepository;
+import com.study.stockbot.wrapper.SkillResponse;
+import com.study.stockbot.wrapper.SkillTemplate;
+import com.study.stockbot.wrapper.skill.ListCardView;
+import com.study.stockbot.wrapper.skill.type.ListCard;
+import com.study.stockbot.wrapper.type.ListItem;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController // JSON 형태 결과값을 반환해줌 (@ResponseBody가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌. (Autowired 역할)
@@ -16,12 +20,52 @@ import java.util.List;
 public class MemberController {
     private final MemberRepository memberRepository;
 
-    /** * 멤버 조회 * @return */
-    @GetMapping("member")
-    public List<MemberEntity> findAllMember()
-    {
-        return memberRepository.findAll();
+    @PostMapping("member")
+    public SkillResponse findMember(@RequestBody Map<String, Object> params) {
+        List<MemberEntity> memberData = memberRepository.findAll();
+        System.out.println(memberData);
+
+
+        List<ListItem> memberListData = new ArrayList<>();
+
+        for (MemberEntity data : memberData) {
+            String userEmail = data.getUsername();
+            String userName = data.getName();
+
+            String description = String
+                    .format("이름 : %s / 이메일 : %s", userName, userEmail);
+
+            memberListData.add(ListItem.builder()
+                    .title((String) "DB TEST")
+                    .description(description)
+                    .build());
+        }
+
+        return SkillResponse.builder()
+                .template(SkillTemplate.builder()
+                        .addOutput(ListCardView.builder()
+                                .listCard(ListCard.builder()
+                                        .header(ListItem.builder()
+                                                .title("DB조회 테스트")
+                                                .build())
+                                        .items(memberListData)
+                                        .build())
+                                .build())
+                        .addQuickReply(replyData.todayCafe)
+                        .build())
+                .build();
+
     }
+
+//
+//    /**
+//     * 멤버 조회 * @return
+//     */
+//    @PostMapping("member")
+//    public List<MemberEntity> findAllMember() {
+//        return memberRepository.findAll();
+//    }
+
 
 //    @PostMapping("member")
 //    public MemberEntity signUp()

@@ -13,3 +13,27 @@ spring:
       enabled: true
     restart:
       enabled: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql의 jdbc 드라이버
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&serverTimezone=Asia/Seoul # 데이터베이스 url
+    username: admin
+    password: admin1234
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    properties:
+      hibernate:
+        show_sql: true # 하이버네이트가 실행한 모든 SQL문을 콘솔로 출력
+        format_sql: true # SQL문을 가독성 있게 표현
+        use_sql_comments: true # 디버깅 정보 출력
+    hibernate:
+      ddl-auto: update
+
+#로킹 레벨
+logging:
+  level:
+    org:
+      hibernate: info
