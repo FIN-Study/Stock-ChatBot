@@ -10,18 +10,20 @@
 
 #### 일정: 2021.08.01 ~ 15
 
-#### 주제: 
+#### 주제: 특정 키워드 관련 테마주와 가격
 
 ----
 
 ## 개발환경
 
 - Server
-  - 
+  - AWS EC2
+    - Ubuntu 18.04 LTS
 - DB
-  - 
+  - MySQL
 - Java
-  - SpringBoot()
+  - SpringBoot (2.5.3)
+  - OpenJDK (11)
 
 
 
