@@ -1,7 +1,7 @@
 package com.study.stockbot.controller;
 
-import com.study.stockbot.entity.MemberEntity;
-import com.study.stockbot.repo.MemberRepository;
+import com.study.stockbot.model.Member;
+import com.study.stockbot.repository.MemberRepository;
 import com.study.stockbot.wrapper.SkillResponse;
 import com.study.stockbot.wrapper.SkillTemplate;
 import com.study.stockbot.wrapper.skill.ListCardView;
@@ -22,13 +22,13 @@ public class MemberController {
 
     @PostMapping("member")
     public SkillResponse findMember(@RequestBody Map<String, Object> params) {
-        List<MemberEntity> memberData = memberRepository.findAll();
+        List<Member> memberData = memberRepository.findAll();
         System.out.println(memberData);
 
 
         List<ListItem> memberListData = new ArrayList<>();
 
-        for (MemberEntity data : memberData) {
+        for (Member data : memberData) {
             String userEmail = data.getUsername();
             String userName = data.getName();
 

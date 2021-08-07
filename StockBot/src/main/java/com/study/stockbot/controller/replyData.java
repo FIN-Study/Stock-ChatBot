@@ -10,7 +10,13 @@ public interface replyData {
     QuickReply todayCafe = QuickReply.builder()
             .label("\uD83C\uDF72테마주 검색")
             .action("block")
-            .blockId("5e12c4c8ffa74800014bddbd")
+            .blockId("")
+            .build();
+
+    QuickReply gotoHome = QuickReply.builder()
+            .label("처음으로")
+            .action("block")
+            .blockId("")
             .build();
 
     SkillResponse homeResponse = SkillResponse.builder()
