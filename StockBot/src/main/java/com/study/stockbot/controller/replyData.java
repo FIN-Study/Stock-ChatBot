@@ -19,6 +19,21 @@ public interface replyData {
             .blockId("")
             .build();
 
+
+    //    DB에 데이터가 없을 경우
+    SkillResponse noData = SkillResponse.builder()
+            .template(SkillTemplate.builder()
+                    .addOutput(SimpleTextView.builder()
+                            .simpleText(SimpleText.builder()
+                                    .text("데이터베이스에 존재하지 않습니다.\n입력단어를 확인하시거나, 운영자에게 등록요청을 부탁드립니다")
+                                    .build()
+                            )
+                            .build())
+                    .addQuickReply(replyData.gotoHome)
+                    .build())
+            .build();
+
+
     SkillResponse homeResponse = SkillResponse.builder()
             .template(SkillTemplate.builder()
                     .addOutput(SimpleTextView.builder()

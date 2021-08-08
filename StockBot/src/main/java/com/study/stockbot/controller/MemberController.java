@@ -29,8 +29,8 @@ public class MemberController {
         List<ListItem> memberListData = new ArrayList<>();
 
         for (Member data : memberData) {
-            String userEmail = data.getUsername();
-            String userName = data.getName();
+            String userEmail = data.getKeyword();
+            String userName = data.getStocks();
 
             String description = String
                     .format("이름 : %s / 이메일 : %s", userName, userEmail);

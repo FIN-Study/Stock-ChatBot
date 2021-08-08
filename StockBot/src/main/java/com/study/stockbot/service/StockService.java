@@ -23,4 +23,7 @@ public class StockService {
         return new ArrayList<>(stockRepository.findStockInfoByStockName(stockName));
     }
 
+    public boolean exitsByStockName(String stockName) {
+        return stockRepository.existsStockByStockName(stockName);
+    }
 }

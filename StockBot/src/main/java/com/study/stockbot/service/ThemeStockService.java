@@ -23,5 +23,8 @@ public class ThemeStockService {
         return new ArrayList<>(themeStockRepository.findThemeStockByKeywordName(keywordName));
     }
 
-
+    // 종목이름이 DB에 있는지 확인
+    public boolean exitsByKeywordName(String keywordName) {
+        return themeStockRepository.existsThemeStockByKeywordName(keywordName);
+    }
 }
