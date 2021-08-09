@@ -12,13 +12,8 @@ Original file is located at
 import pandas as pd
 import numpy as np
 import pymysql
-conn = pymysql.connect(
-    user='testAdmin', 
-    passwd='test1234', 
-    host='13.125.87.150', 
-    db='test', 
-    charset='utf8'
-)
+
+# mysql 연결 코드 삽입
 
 # 파일 로드
 !curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=1eLMWxjK6ADHMRO3aEmJUStDWa7P4H8Zj" > /dev/null
