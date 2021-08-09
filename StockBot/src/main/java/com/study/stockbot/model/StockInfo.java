@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,15 +16,18 @@ import javax.persistence.*;
 public class StockInfo {
 
     @Id // Primary Key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 시퀀스, auto_increment
+    @Column(nullable = true, unique = true, length = 255)
+    private String stockcode;
 
-    @Column(nullable = false, unique = true, length = 45)
-    private String stockName;
+    @Column(nullable = true, unique = true, length = 255)
+    private String stockname;
 
-    @Column(nullable = true, length = 100)
+    @Column(nullable = true, length = 255)
+    private String time;
+
+    @Column(nullable = true, length = 255)
     private String price;
 
-    @Column(nullable = true, length = 100)
-    private String flucRate;
+    @Column(nullable = true, length = 255)
+    private String rate;
 }

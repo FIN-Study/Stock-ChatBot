@@ -1,4 +1,4 @@
-package com.study.stockbot.controller;
+package com.study.stockbot.controller.api;
 
 import com.study.stockbot.wrapper.SkillResponse;
 import com.study.stockbot.wrapper.skill.SimpleTextView;

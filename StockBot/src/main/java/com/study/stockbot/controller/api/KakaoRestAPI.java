@@ -1,7 +1,6 @@
 package com.study.stockbot.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.study.stockbot.controller.replyData;
 import com.study.stockbot.wrapper.SkillResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

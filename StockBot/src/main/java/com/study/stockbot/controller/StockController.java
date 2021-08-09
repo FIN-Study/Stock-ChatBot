@@ -2,6 +2,7 @@ package com.study.stockbot.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.study.stockbot.controller.api.replyData;
 import com.study.stockbot.model.StockInfo;
 import com.study.stockbot.service.StockService;
 import com.study.stockbot.wrapper.SkillResponse;
@@ -46,7 +47,7 @@ public class StockController {
         for (StockInfo data : stockData) {
 //            String stockName = data.getStockName();
             String stockPrice = data.getPrice();
-            String stockRate = data.getFlucRate();
+            String stockRate = data.getRate();
 
             String description = String
                     .format("가격 : %s / 등락율 : %s", stockPrice, stockRate);

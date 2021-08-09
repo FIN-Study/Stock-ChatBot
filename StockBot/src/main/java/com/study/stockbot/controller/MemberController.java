@@ -1,5 +1,6 @@
 package com.study.stockbot.controller;
 
+import com.study.stockbot.controller.api.replyData;
 import com.study.stockbot.model.Member;
 import com.study.stockbot.repository.MemberRepository;
 import com.study.stockbot.wrapper.SkillResponse;

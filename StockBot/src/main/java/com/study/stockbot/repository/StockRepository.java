@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface StockRepository extends JpaRepository<StockInfo, Long> {
 
-    List<StockInfo> findStockInfoByStockName(String stockName);
+    List<StockInfo> findStockInfoByStockname(String stockName); // 종목이름으로 DB에서 검색
 
-    boolean existsStockByStockName(String stockName);
+    boolean existsStockByStockname(String stockName); // 종목이름이 DB에 있는지 없는지
 }
