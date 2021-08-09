@@ -53,6 +53,5 @@ for key in stock_to_code:
     curs.execute(f"INSERT INTO stock VALUES(\"{stock_to_code[key]}\",\"{key}\",\"{now}\",\"{now_price}\",\"{now_rate}\")")
     conn.commit()
 
-df.set_index('stock_to_code[key]', inplace=True)
 print(df)
 
