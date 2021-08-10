@@ -56,12 +56,12 @@ public class FallbackData {
                                         .items(stockListData)
                                         .build())
                                 .build())
+                        .addQuickReply(replyData.gotoHome)
                         .addQuickReply(replyArray[0])
                         .addQuickReply(replyArray[1])
                         .addQuickReply(replyArray[2])
                         .addQuickReply(replyArray[3])
                         .addQuickReply(replyArray[4])
-                        .addQuickReply(replyData.gotoHome)
                         .build())
                 .build();
     }

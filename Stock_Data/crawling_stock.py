@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -16,7 +19,11 @@ import asyncio
 import pymysql
 
 conn = pymysql.connect(
-    # private key
+    user='stockbotAdmin',
+    passwd='a40844084',
+    host='stock-chatbot-rds.cgw5ybwbhaw9.ap-northeast-2.rds.amazonaws.com',
+    db='stock_chatbot',
+    charset='utf8'
 )
 
 curs = conn.cursor()

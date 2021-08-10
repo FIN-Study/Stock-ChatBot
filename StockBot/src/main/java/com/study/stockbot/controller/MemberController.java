@@ -52,7 +52,7 @@ public class MemberController {
                                         .items(memberListData)
                                         .build())
                                 .build())
-                        .addQuickReply(replyData.todayCafe)
+                        .addQuickReply(replyData.searchTheme)
                         .build())
                 .build();
 

@@ -7,8 +7,14 @@ import com.study.stockbot.wrapper.QuickReply;
 import com.study.stockbot.wrapper.SkillTemplate;
 
 public interface replyData {
-    QuickReply todayCafe = QuickReply.builder()
-            .label("\uD83C\uDF72테마주 검색")
+    QuickReply searchTheme = QuickReply.builder()
+            .label("테마주 검색")
+            .action("block")
+            .blockId("")
+            .build();
+
+    QuickReply searchStock = QuickReply.builder()
+            .label("테마주 검색")
             .action("block")
             .blockId("")
             .build();
@@ -42,7 +48,9 @@ public interface replyData {
                                     .build()
                             )
                             .build())
-                    .addQuickReply(replyData.todayCafe)
+                    .addQuickReply(replyData.gotoHome)
+                    .addQuickReply(replyData.searchTheme)
+                    .addQuickReply(replyData.searchStock)
                     .build())
             .build();
 }

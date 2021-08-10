@@ -1,0 +1,3 @@
+# 9시부터 16시까지 30분 간격으로 실행
+
+*/30 9-15 * * * python3 /home/ubuntu/apps/runs/db/crawling_stock.py > /home/ubuntu/apps/runs/db/log_`date +\%Y\%m\%d\%H\%M\%S`.log 2>&1

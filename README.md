@@ -20,7 +20,8 @@
   - AWS EC2
     - Ubuntu 18.04 LTS
 - DB
-  - MySQL
+  - AWS RDS
+    - MySQL 8.0
 - Java
   - SpringBoot (2.5.3)
   - OpenJDK (11)
