@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 from datetime import datetime
+import asyncio
+from functools import partial
 
 # DB 연결
 import pymysql
@@ -13,9 +15,14 @@ conn = pymysql.connect(
 curs = conn.cursor()
 
 
-def get_price(company_code):
+# 비동기로 실행
+async def get_price(company_code):
     url = 'https://finance.naver.com/item/main.nhn?code=' + company_code
-    source_code = requests.get(url)
+
+    loop = asyncio.get_event_loop()
+    request = partial(requests.get, url, header={'user-agent': 'Mozilla/5.0'})
+    source_code = await loop.run_in_executor(None, request)
+
     bs_obj = BeautifulSoup(source_code.content, "html.parser")
     no_today = bs_obj.find("p", {"class": "no_today"})
     blind = no_today.find("span", {"class": "blind"})
@@ -23,9 +30,13 @@ def get_price(company_code):
     return now_price
 
 
-def get_rate(company_code):
+async def get_rate(company_code):
     url = 'https://finance.naver.com/item/sise.nhn?code=' + company_code
-    source_code = requests.get(url)
+
+    loop = asyncio.get_event_loop()
+    request = partial(requests.get, url, header={'user-agent': 'Mozilla/5.0'})
+    source_code = await loop.run_in_executor(None, request)
+
     bs_obj = BeautifulSoup(source_code.content, "html.parser")
     no_exday = bs_obj.select_one('#_rate > span')
     now_rate = no_exday.text
