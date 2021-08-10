@@ -10,11 +10,11 @@ print(type(curs))
 
 sql = '''
 CREATE TABLE stock (
-종목코드 varchar(255),
-종목명 varchar(255),
-시간 DATETIME,
-가격 varchar(255),
-등락률 varchar(255))
+stockcode varchar(255),
+stockname varchar(255),
+time DATETIME,
+price varchar(255),
+rate varchar(255))
 '''
 curs.execute(sql)
 conn.commit()
