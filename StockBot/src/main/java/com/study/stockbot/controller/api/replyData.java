@@ -14,7 +14,7 @@ public interface replyData {
             .build();
 
     QuickReply searchStock = QuickReply.builder()
-            .label("테마주 검색")
+            .label("주식종목 검색")
             .action("block")
             .blockId("")
             .build();

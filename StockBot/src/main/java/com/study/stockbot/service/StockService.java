@@ -1,8 +1,8 @@
 package com.study.stockbot.service;
 
 import com.study.stockbot.model.StockInfo;
+import com.study.stockbot.model.ThemeStockInfo;
 import com.study.stockbot.repository.StockRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,4 +29,10 @@ public class StockService {
     public boolean exitsByStockName(String stockName) {
         return stockRepository.existsStockByStockname(stockName);
     }
+
+    // 테마주 관련 모든 종목정보 조회
+    public List<ThemeStockInfo> findAllByThemeStock(List<String> stockNames) {
+        return new ArrayList<>(stockRepository.findAllByThemeStock(stockNames));
+    }
+
 }

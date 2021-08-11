@@ -2,6 +2,8 @@ package com.study.stockbot.controller.api;
 
 import com.study.stockbot.model.StockInfo;
 import com.study.stockbot.model.ThemeStock;
+import com.study.stockbot.model.ThemeStockInfo;
+import com.study.stockbot.service.StockService;
 import com.study.stockbot.wrapper.QuickReply;
 import com.study.stockbot.wrapper.SkillResponse;
 import com.study.stockbot.wrapper.SkillTemplate;
@@ -13,8 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FallbackData {
+    final StockService stockService;
 
-    public SkillResponse themeStock(String utter, List<ThemeStock> themeStockData) {
+    public FallbackData(StockService stockService) {
+        this.stockService = stockService;
+    }
+
+    public SkillResponse themeStock(String utter, List<ThemeStock> themeStockData, List<ThemeStockInfo> stockDatas) {
         String headerTitle = utter + " 관련주 입니다."; // 메시지 메인 Title
 
 //        특정 키워드로 주식종목 조회
@@ -26,15 +33,28 @@ public class FallbackData {
         for (ThemeStock data : themeStockData) {
 //            String stockName = data.getStockName();
             String[] relatedItems = data.getRelatedItems().split("\\s*,\\s*");
-//            System.out.println(relatedItems);
+
             int num = 0;
             for (String item : relatedItems) {
+                // 주식 정보 가져오기
+//                List<StockInfo> stockData = stockService.findByName(item);
+                String info_price = "";
+                for (ThemeStockInfo stockData : stockDatas) {
+                    if (item.equals(stockData.getStockName())) {
+                        String stockPrice = stockData.getPrice();
+                        String stockRate = stockData.getRate();
+                        info_price = String
+                                .format("가격 : %s원 | 등락율 : %s", stockPrice, stockRate);
+                        break;
+                    }
+                }
+
                 String title = String
                         .format("%s", item);
 
                 stockListData.add(ListItem.builder()
                         .title((String) title)
-                        .description("")
+                        .description(info_price)
                         .build());
 
                 replyArray[num] = QuickReply.builder()
@@ -78,7 +98,6 @@ public class FallbackData {
                     .blockId("")
                     .build();
         }
-
 //         주식종목 조회
         List<ListItem> stockDataList = new ArrayList<>();
 
