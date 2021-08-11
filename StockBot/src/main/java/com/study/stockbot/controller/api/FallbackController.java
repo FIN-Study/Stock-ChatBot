@@ -18,10 +18,9 @@ public class FallbackController extends FallbackData {
     final ThemeStockService themeStockService;
     final StockService stockService;
 
-    private List<String> quickReplyList = new ArrayList<>(); // 사용자가 관련주 검색 후, 한 종목을 검색했을 때, 다른 관련 종목 검색을 이어서 계속 할 수 있게 하기 위함.
+//    private List<String> quickReplyList = new ArrayList<>(); // 사용자가 관련주 검색 후, 한 종목을 검색했을 때, 다른 관련 종목 검색을 이어서 계속 할 수 있게 하기 위함.
 
     public FallbackController(ThemeStockService themeStockService, StockService stockService) {
-        super(stockService);
         this.themeStockService = themeStockService;
         this.stockService = stockService;
     }
@@ -43,23 +42,23 @@ public class FallbackController extends FallbackData {
         if (validKeyword) { // 테마주 검색
             List<ThemeStock> themeStockData = themeStockService.findByName(utter);
 
-//            사용자가 관련주 검색 후, 한 종목을 검색했을 때, 다른 관련 종목 검색을 이어서 계속 할 수 있게 하기 위함.
-            quickReplyList = new ArrayList<>();
+            List<String> stockData = new ArrayList<>();
+            
+            // 리스트에 종목별 주식정보를 넣어주기 위함
             for (ThemeStock data : themeStockData) {
                 String[] relatedItems = data.getRelatedItems().split("\\s*,\\s*");
-                quickReplyList.addAll(Arrays.asList(relatedItems));
+                stockData.addAll(Arrays.asList(relatedItems));
             }
-            List<ThemeStockInfo> stockDatas = stockService.findAllByThemeStock(quickReplyList);
+            List<ThemeStockInfo> stockDatas = stockService.findAllByThemeStock(stockData);
 
-            return new FallbackData(stockService).themeStock(utter, themeStockData, stockDatas);
+            return new FallbackData().themeStock(utter, themeStockData, stockDatas);
         }
 
         boolean validStock = stockService.exitsByStockName(utter);
         if (validStock) { // 주식종목 검색
             List<StockInfo> stockData = stockService.findByName(utter);
-            return new FallbackData(stockService).stock(utter, stockData, quickReplyList);
+            return new FallbackData().stock(utter, stockData);
         }
-
 
         return replyData.noData;
     }

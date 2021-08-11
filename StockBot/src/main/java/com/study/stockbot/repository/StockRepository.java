@@ -15,6 +15,6 @@ public interface StockRepository extends JpaRepository<StockInfo, Long> {
     boolean existsStockByStockname(String stockName); // 종목이름이 DB에 있는지 없는지
 
     // select * from stock where stockname in ('DSR','STX','KEC','삼성전자','NAVER');
-    @Query(value = "SELECT s.stockname, s.price, s.rate FROM stock s WHERE s.stockname IN ?1", nativeQuery = true)
+    @Query(value = "SELECT s.stockcode, s.stockname, s.price, s.rate FROM stock s WHERE s.stockname IN ?1", nativeQuery = true)
     List<ThemeStockInfo> findAllByThemeStock(List<String> stockNames);
 }
